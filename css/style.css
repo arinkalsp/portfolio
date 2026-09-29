@@ -87,7 +87,7 @@ a:hover { color: var(--accent-dark); }
 .hero-l1 { padding-left: 13.2%; }
 .hero-l2 { display: flex; align-items: center; gap: 0.14em; }
 .spin-star { display: inline-block; width: 0.372em; height: 0.356em; margin-left: 0.045em; vertical-align: 0.37em; fill: currentColor; }
-.hero-l3 { padding-left: 19.2%; }
+.hero-l3 { align-self: flex-end; font-size: 0.8em; white-space: nowrap; }
 .hero-photo {
   grid-column: 1; grid-row: 2; align-self: start; margin-top: -48px;
   height: clamp(420px, calc(100svh - 400px), 680px); aspect-ratio: 4 / 5;
@@ -381,6 +381,7 @@ section + section, .work { margin-top: var(--gap-section); }
   .hero { grid-template-columns: 1fr; }
   .hero-title { font-size: clamp(38px, 11.5vw, 60px); }
   .hero-l1, .hero-l3 { padding-left: 0; }
+  .hero-l3 { align-self: auto; font-size: 1em; white-space: normal; }
   .hero-l2 { display: block; }
   .poster-flagship .play { width: 60px; height: 60px; }
   .poster-flagship .play svg { width: 18px; height: 20px; margin-left: 3px; }
