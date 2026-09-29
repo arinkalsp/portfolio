@@ -12,7 +12,7 @@
   --pad: clamp(20px, 2.8vw, 40px);
   --max: 1440px;
   --sans: "Host Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --serif: "Bodoni Moda", Didot, "Bodoni 72", Georgia, serif;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
   --gap-section: clamp(96px, 11vw, 170px);
 }
 
@@ -39,7 +39,7 @@ a:hover { color: var(--accent-dark); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--pad); }
-.serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
+.serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.015em; }
 .accent { color: var(--accent); }
 .muted { color: var(--muted); }
 .small { font-size: 12px; }
@@ -87,7 +87,7 @@ a:hover { color: var(--accent-dark); }
 .hero-l1 { padding-left: 13.2%; }
 .hero-l2 { display: flex; align-items: center; gap: 0.14em; }
 .spin-star { display: inline-block; width: 0.372em; height: 0.356em; margin-left: 0.045em; vertical-align: 0.37em; fill: currentColor; }
-.hero-l3 { align-self: flex-end; font-size: 0.8em; white-space: nowrap; }
+.hero-l3 { align-self: flex-end; font-size: 0.8em; white-space: nowrap; margin-top: 0.16em; }
 .hero-photo {
   grid-column: 1; grid-row: 2; align-self: start; margin-top: -48px;
   height: clamp(420px, calc(100svh - 400px), 680px); aspect-ratio: 4 / 5;
@@ -219,7 +219,7 @@ section + section, .work { margin-top: var(--gap-section); }
 .factories-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px 48px; }
 .factories-side { max-width: 460px; display: flex; flex-direction: column; gap: 16px; }
 .factories-text { font-size: 16px; line-height: 1.45; text-wrap: pretty; }
-.process { font-size: 16px; font-style: italic; text-wrap: pretty; }
+.process { font-family: var(--serif); font-size: 18px; font-style: italic; line-height: 1.4; text-wrap: pretty; }
 .factories-body { display: flex; gap: 32px; align-items: flex-start; }
 .stats { display: grid; grid-template-columns: repeat(2, 250px); gap: 16px; flex-shrink: 0; }
 .stat {
@@ -381,7 +381,7 @@ section + section, .work { margin-top: var(--gap-section); }
   .hero { grid-template-columns: 1fr; }
   .hero-title { font-size: clamp(38px, 11.5vw, 60px); }
   .hero-l1, .hero-l3 { padding-left: 0; }
-  .hero-l3 { align-self: auto; font-size: 1em; white-space: normal; }
+  .hero-l3 { align-self: auto; font-size: 1em; white-space: normal; margin-top: 0.08em; }
   .hero-l2 { display: block; }
   .poster-flagship .play { width: 60px; height: 60px; }
   .poster-flagship .play svg { width: 18px; height: 20px; margin-left: 3px; }
