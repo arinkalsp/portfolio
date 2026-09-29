@@ -43,7 +43,6 @@
   var photo = $("hero-photo");
   if (photo && P.photo) photo.src = P.photo;
   set("hero-intro", (P.intro || "") + (P.mission ? '<br><span class="muted">' + P.mission + "</span>" : ""));
-  set("hero-footnote", P.imdb ? '*Credits on <a class="link" href="' + esc(P.imdb) + '" target="_blank" rel="noopener">IMDb</a>' : "");
   set("manifesto-note", S.manifestoNote || "");
 
   // ─── Flagship ───
@@ -83,6 +82,8 @@
   // ─── Factories ───
   var FA = S.factories || {};
   set("factories-process", (FA.process || []).join(" → "));
+  var ft = $("factories-text");
+  if (ft && FA.text) { ft.innerHTML = FA.text; ft.hidden = false; }
   set("factories-stats", (FA.stats || []).map(function (s) {
     return '<div class="stat' + (s.highlight ? " stat-hi" : "") + '"><span class="stat-value">' + s.value + '</span><span class="stat-label">' + s.label + "</span></div>";
   }).join(""));
@@ -142,17 +143,12 @@
   set("earlier-text", (ER.text || "") + (ER.archiveUrl ? ' <a class="link" href="' + esc(ER.archiveUrl) + '" target="_blank" rel="noopener">View archive</a>' : ""));
 
   // ─── Contacts ───
-  set("contacts", (S.contacts || []).map(function (c) {
+  var links = (S.contacts || []).slice();
+  if (P.imdb) links.push({ text: "IMDb", url: P.imdb });
+  set("footer-links", links.map(function (c) {
     var ext = /^https?:/.test(c.url) ? ' target="_blank" rel="noopener"' : "";
-    return '<div class="contact"><div class="contact-top"><span class="accent-small">' + c.label + "</span>" +
-      '<a class="contact-value" href="' + esc(c.url) + '"' + ext + ">" + c.value + "</a></div>" +
-      '<a class="button" href="' + esc(c.url) + '"' + ext + ">" + c.button + "</a></div>";
+    return '<a href="' + esc(c.url) + '"' + ext + ">" + (c.text || c.value || c.label) + "</a>";
   }).join(""));
-  var fl = [];
-  if (P.cv) fl.push('<a class="link" href="' + esc(P.cv) + '" target="_blank" rel="noopener">Download CV</a>');
-  if (P.imdb) fl.push('<a class="link" href="' + esc(P.imdb) + '" target="_blank" rel="noopener">IMDb</a>');
-  if (ER.archiveUrl) fl.push('<a class="link" href="' + esc(ER.archiveUrl) + '" target="_blank" rel="noopener">Earlier work archive</a>');
-  set("footer-links", fl.join(""));
   document.querySelectorAll(".cv-link").forEach(function (a) {
     if (P.cv) { a.href = P.cv; a.hidden = false; }
   });
@@ -185,15 +181,61 @@
   }
 
   // ─── YouTube player in a dialog ───
-  var dlg = $("player"), frame = $("player-frame");
+  // Uses the official YouTube IFrame API, so if a video can't be embedded
+  // the viewer sees a clear message and a direct link instead of a blank frame.
+  var dlg = $("player"), frame = $("player-frame"), ytPlayer = null, ytQueue = [];
+  function loadYT(cb) {
+    if (window.YT && window.YT.Player) { cb(); return; }
+    ytQueue.push(cb);
+    if (ytQueue.length > 1) return;
+    var prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function () {
+      if (prev) prev();
+      var q = ytQueue; ytQueue = []; q.forEach(function (f) { f(); });
+    };
+    var tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    tag.onerror = function () { var q = ytQueue; ytQueue = []; q.forEach(function (f) { f(true); }); };
+    document.head.appendChild(tag);
+  }
+  function showFallback(id, reason) {
+    var box = frame.querySelector(".player-fallback");
+    if (!box) return;
+    box.innerHTML = reason + ' <a href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener">Watch on YouTube</a>';
+    box.hidden = false;
+  }
   function openPlayer(url) {
     var id = youtubeId(url);
     if (!id) { window.open(url, "_blank", "noopener"); return; }
-    frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1" title="Video" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    frame.innerHTML = '<div class="player-screen"><div id="yt-player"></div><p class="player-fallback" hidden></p></div>' +
+      '<a class="player-yt" href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener">Open on YouTube</a>';
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    loadYT(function (failed) {
+      if (failed || !dlg.open) {
+        if (failed) showFallback(id, "The video player could not load here.");
+        return;
+      }
+      ytPlayer = new YT.Player("yt-player", {
+        videoId: id,
+        width: "100%",
+        height: "100%",
+        playerVars: { autoplay: 1, rel: 0, playsinline: 1, origin: window.location.origin },
+        events: {
+          onError: function (e) {
+            var embedOff = e.data === 101 || e.data === 150 || e.data === 153;
+            showFallback(id, embedOff ? "This video can’t be played on other websites." : "This video can’t be played here right now.");
+          }
+        }
+      });
+    });
+  }
+  function clearPlayer() {
+    if (ytPlayer && ytPlayer.destroy) { try { ytPlayer.destroy(); } catch (err) {} }
+    ytPlayer = null;
+    frame.innerHTML = "";
   }
   function closePlayer() {
-    frame.innerHTML = "";
+    clearPlayer();
     if (dlg.open) { if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); }
   }
   document.addEventListener("click", function (e) {
@@ -202,7 +244,7 @@
   });
   dlg.querySelector(".player-close").addEventListener("click", closePlayer);
   dlg.addEventListener("click", function (e) { if (e.target === dlg) closePlayer(); });
-  dlg.addEventListener("close", function () { frame.innerHTML = ""; });
+  dlg.addEventListener("close", clearPlayer);
 
   // ─── Carousel arrows ───
   var ARROW_L = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';

@@ -23,7 +23,7 @@ window.SITE = {
     photo: "media/portrait.jpg",
     intro: "AI-first creative developer and production executive with extensive experience in audiovisual production, from social media and branded campaigns to film and animation.",
     mission: "My mission is to prototype workflows, lead and supervise teams, and push the creative boundaries of AI tools.",
-    imdb: "https://www.imdb.com/name/nm18338650/",
+    imdb: "https://www.imdb.com/name/nm18338650/", // ссылка показывается в самом низу сайта
     // Резюме: положите PDF в папку files и впишите путь, например "files/Arina_Aksenova_CV.pdf".
     // Пока здесь пусто, кнопки Download CV на сайте не показываются.
     cv: "",
@@ -141,6 +141,8 @@ window.SITE = {
 
   // ─── КОНТЕНТ-ЗАВОДЫ ────────────────────────────────────────────────
   factories: {
+    // Текст справа вверху блока. Пока пусто — блок не показывается.
+    text: "",
     process: ["Analytics and planning", "Production", "Testing", "Distribution + SMM", "Data", "Optimization", "Scaling"],
     // highlight: true — салатовая плитка. Остальные тёмные.
     stats: [
@@ -149,6 +151,7 @@ window.SITE = {
       { value: "$2.57", label: "Lowest blended<br>CPM (Dec 2025)" },
       { value: "10+",   label: "Internal team size" },
     ],
+    // Это карусель: роликов можно добавлять сколько угодно.
     // url и handle можно оставить пустыми "", тогда ссылки под роликом не будет.
     channels: [
       { name: "Auntie Lyda | ALWA",      video: "media/factories/lyudmila.mp4",  poster: "media/factories/lyudmila.jpg",  handle: "@lydmila_mikhailovna", url: "https://www.instagram.com/lydmila_mikhailovna", platform: "Instagram" },
@@ -217,11 +220,11 @@ window.SITE = {
     archiveUrl: "https://aaksenova.tilda.ws/",
   },
 
-  // ─── КОНТАКТЫ ──────────────────────────────────────────────────────
+  // ─── КОНТАКТЫ (строка ссылок внизу сайта, после них автоматически идёт IMDb) ─
   contacts: [
-    { label: "Phone",    value: "+381 61 158 82 01",   url: "tel:+381611588201",                          button: "Call" },
-    { label: "Email",    value: "arinkalsp@gmail.com", url: "mailto:arinkalsp@gmail.com",                 button: "Write an email" },
-    { label: "LinkedIn", value: "in/arina-aksenova",   url: "https://www.linkedin.com/in/arina-aksenova/", button: "Open profile" },
-    { label: "Telegram", value: "@poetry_of_foil",     url: "https://t.me/poetry_of_foil",                 button: "Message me" },
+    { text: "+381 61 158 82 01",   url: "tel:+381611588201" },
+    { text: "arinkalsp@gmail.com", url: "mailto:arinkalsp@gmail.com" },
+    { text: "LinkedIn",            url: "https://www.linkedin.com/in/arina-aksenova/" },
+    { text: "Telegram",            url: "https://t.me/poetry_of_foil" },
   ],
 };

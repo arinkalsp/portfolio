@@ -6,14 +6,14 @@
 <title>Arina Aksenova, creative producer for AI and hybrid projects</title>
 <meta name="description" content="Creative producer for AI and hybrid productions: series, films, commercials and content factories. Pipeline design, team leadership, budgets and creative supervision.">
 <meta name="theme-color" content="#F4EFE6">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
-<!-- Превью ссылки в LinkedIn, Telegram и мессенджерах.
-     После первой публикации замените SITE-ADDRESS на реальный адрес сайта, например https://portfolio.pages.dev -->
+<!-- Превью ссылки в LinkedIn, Telegram и мессенджерах. Если сменится адрес сайта, поменяйте его в двух строках ниже. -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Arina Aksenova, creative producer for AI and hybrid projects">
 <meta property="og:description" content="Series, films, commercials and content factories made with AI and hybrid pipelines.">
-<meta property="og:image" content="SITE-ADDRESS/og-image.jpg">
-<meta property="og:url" content="SITE-ADDRESS/">
+<meta property="og:image" content="https://portfolio.arinkalsp.workers.dev/og-image.jpg">
+<meta property="og:url" content="https://portfolio.arinkalsp.workers.dev/">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -44,15 +44,16 @@
       <span class="hero-l2"><span class="accent">*(</span>CREATIVE PRODUCER<span class="accent">)</span></span>
       <span class="hero-l3 serif">for AI and hybrid projects</span>
     </h1>
-    <img class="hero-photo" id="hero-photo" alt="Arina Aksenova" width="330" height="440">
+    <div class="hero-photo"><img id="hero-photo" alt="Arina Aksenova" width="900" height="1200"></div>
     <div class="hero-text">
       <p id="hero-intro"></p>
-      <a class="link big" href="#contact">Get in touch</a>
-      <p class="footnote" id="hero-footnote"></p>
     </div>
+    <a class="scroll-cue" href="#manifesto" aria-label="Scroll down">
+      <svg viewBox="0 0 24 26" aria-hidden="true"><path d="M5 4l7 7 7-7M5 13l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
   </section>
 
-  <section class="manifesto wrap" aria-label="Approach">
+  <section class="manifesto wrap" id="manifesto" aria-label="Approach">
     <p class="manifesto-title" aria-hidden="false">
       <span class="m-l1">NEW STORY,</span>
       <span class="m-l2"><span class="rule"></span><span class="serif">new pipeline,</span></span>
@@ -93,11 +94,17 @@
   <section class="factories wrap" id="factories">
     <div class="factories-head">
       <h2 class="h-big">CONTENT<br>FACTORIES</h2>
-      <p class="process" id="factories-process"></p>
+      <div class="factories-side">
+        <p class="factories-text" id="factories-text" hidden></p>
+        <p class="process" id="factories-process"></p>
+      </div>
     </div>
     <div class="factories-body">
       <div class="stats" id="factories-stats"></div>
-      <div class="channels" id="factories-channels"></div>
+      <div class="channels-col">
+        <div class="channels-bar"><span class="muted-small">Channels and formats</span><div class="carousel-controls" data-for="factories-channels"></div></div>
+        <div class="track channels" id="factories-channels"></div>
+      </div>
     </div>
   </section>
 
@@ -166,10 +173,9 @@
 
 <footer class="footer wrap" id="contact">
   <h2 class="footer-title">LET’S CHAT</h2>
-  <div class="contact-grid" id="contacts"></div>
   <div class="footer-bar">
-    <div class="footer-links" id="footer-links"></div>
-    <span>Arina Aksenova, 2026</span>
+    <nav class="footer-links" id="footer-links" aria-label="Contacts"></nav>
+    <span class="footer-copy">Arina Aksenova, 2026</span>
   </div>
 </footer>
 
