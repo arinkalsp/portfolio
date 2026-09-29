@@ -159,6 +159,9 @@ window.SITE = {
       { name: "Chef Enotio | ALWA",      video: "media/factories/enotio.mp4",    poster: "media/factories/enotio.jpg",    handle: "@enotio_chef",         url: "https://www.youtube.com/@enotio_chef",          platform: "YouTube" },
       { name: "L’Oréal",                 video: "media/factories/loreal.mp4",    poster: "media/factories/loreal.jpg",    handle: "",                     url: "",                                              platform: "AI influencer" },
       { name: "Spets",                   video: "media/factories/spets.mp4",     poster: "media/factories/spets.jpg",     handle: "",                     url: "",                                              platform: "Performance creative" },
+      { name: "Clarins",                 video: "media/factories/clarins.mp4",   poster: "media/factories/clarins.jpg",   handle: "",                     url: "",                                              platform: "Promo proposal" },
+      { name: "Neurowood",               video: "media/factories/neurowood-trends.mp4", poster: "media/factories/neurowood-trends.jpg", handle: "",       url: "",                                              platform: "Viral Seeding" },
+      { name: "Micro Drama",             video: "media/factories/micro-drama.mp4", poster: "media/factories/micro-drama.jpg", handle: "",                 url: "",                                              platform: "Video Seeding" },
     ],
   },
 
