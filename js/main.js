@@ -271,4 +271,65 @@
     window.addEventListener("resize", update);
     update();
   });
+
+  // ─── Scroll reveals and counters (skipped when reduced motion is on) ───
+  if (!document.documentElement.classList.contains("js-anim")) return;
+
+  function mark(selector, cls, stepMs) {
+    document.querySelectorAll(selector).forEach(function (el, i) {
+      el.classList.add(cls);
+      if (stepMs) el.style.setProperty("--d", (i * stepMs) + "ms");
+    });
+  }
+  // Single elements that slide up as they enter the screen.
+  [".meta-row", ".flagship-title", ".flagship-info", "#flagship-media", ".section-head",
+   ".factories-head > *", ".channels-bar", ".skills-intro", ".about-statement",
+   ".about-right .list-block", ".earlier > *", ".footer-title", ".footer-bar"].forEach(function (sel) {
+    mark(sel, "reveal");
+  });
+  // Lines that follow each other.
+  mark(".manifesto-title > span", "reveal", 110);
+  mark(".manifesto-note", "reveal");
+  mark(".skills-title > span", "reveal", 110);
+  mark(".tool-groups > .list-block", "reveal", 90);
+  // Groups whose children appear one after another.
+  document.querySelectorAll(".track, .hybrid-grid, .stats, .gen-grid").forEach(function (g) {
+    g.classList.add("stagger");
+    Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--i", Math.min(i, 6)); });
+  });
+
+  // Numbers count up from zero the first time they appear.
+  function countUp(el) {
+    var final = el.textContent;
+    var m = final.match(/^([^0-9]*)([0-9]+(?:[.,][0-9]+)?)(.*)$/);
+    if (!m) return;
+    var target = parseFloat(m[2].replace(",", ".")), decimals = (m[2].split(/[.,]/)[1] || "").length;
+    var t0 = null, dur = 1200;
+    function frame(t) {
+      if (!t0) t0 = t;
+      var k = Math.min(1, (t - t0) / dur), eased = 1 - Math.pow(1 - k, 3);
+      el.textContent = m[1] + (target * eased).toFixed(decimals) + m[3];
+      if (k < 1) requestAnimationFrame(frame); else el.textContent = final;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  var seen = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var el = en.target;
+      el.classList.add("is-in");
+      if (el.classList.contains("stats")) el.querySelectorAll(".stat-value").forEach(countUp);
+      if (el.id === "ecom-number") countUp(el);
+      seen.unobserve(el);
+    });
+  }, { rootMargin: "0px 0px -5% 0px", threshold: 0.08 });
+  var watched = document.querySelectorAll(".reveal, .stagger, #ecom-number, .manifesto-title > span");
+  watched.forEach(function (el) { seen.observe(el); });
+  // At the very bottom of the page nothing can scroll further into view, so show what is left.
+  window.addEventListener("scroll", function () {
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      watched.forEach(function (el) { if (!el.classList.contains("is-in")) { el.classList.add("is-in"); seen.unobserve(el); } });
+    }
+  }, { passive: true });
 })();

@@ -29,7 +29,7 @@ window.SITE = {
     cv: "",
   },
 
-  manifestoNote: "No template workflows. Every production gets a pipeline built for its story, tools and team, and one standard: broadcast and cinema quality.",
+  manifestoNote: "Each project gets its own workflow, built around the story and the team. The quality bar stays the same.",
 
   // ─── ФЛАГМАНСКИЙ ПРОЕКТ ────────────────────────────────────────────
   flagship: {
@@ -142,7 +142,7 @@ window.SITE = {
   // ─── КОНТЕНТ-ЗАВОДЫ ────────────────────────────────────────────────
   factories: {
     // Текст справа вверху блока. Пока пусто — блок не показывается.
-    text: "",
+    text: "I built turnkey systems to mass-produce and scale AI video creatives for social media, focused on organic growth and business results. From fast looks-like-real content to flagship cinema quality, adaptable to any audience or language.",
     process: ["Analytics and planning", "Production", "Testing", "Distribution + SMM", "Data", "Optimization", "Scaling"],
     // highlight: true — салатовая плитка. Остальные тёмные.
     stats: [
@@ -198,7 +198,7 @@ window.SITE = {
 
   // ─── ОБО МНЕ ───────────────────────────────────────────────────────
   about: {
-    statement: "Ad agencies taught me speed, film sets taught me craft. AI production is where I use both.",
+    statement: "To me, a good producer is a Swiss Army knife: the right tool for every stage, from prep to post. I dive into every process, keep learning, and see each project through from concept to screen.",
     own: [
       { group: "Development", items: ["Scripts and treatments", "Pitch decks for investors and clients"] },
       { group: "Production",  items: ["Pipeline design, from preproduction to final edit", "Budgets over $600k, schedules and production reporting", "Teams of AI artists, directors, editors and post", "Client, vendor and stakeholder relationships"] },
