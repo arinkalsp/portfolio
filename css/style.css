@@ -121,6 +121,7 @@ a:hover { color: var(--accent-dark); }
 }
 .m-l1 { padding-left: 11%; }
 .m-l2, .m-l3 { display: flex; align-items: center; gap: 0.23em; }
+.m-l2 { margin: 0.1em 0 0.04em; }
 .m-l2 .rule { width: 18%; }
 .m-l3 { padding-left: 3%; }
 .rule { display: block; height: 1px; background: var(--ink); flex-shrink: 0; }
