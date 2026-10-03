@@ -26,7 +26,7 @@ window.SITE = {
     imdb: "https://www.imdb.com/name/nm18338650/", // ссылка показывается в самом низу сайта
     // Резюме: положите PDF в папку files и впишите путь, например "files/Arina_Aksenova_CV.pdf".
     // Пока здесь пусто, кнопки Download CV на сайте не показываются.
-    cv: "",
+    cv: "files/Arina_Aksenova_CV.pdf",
   },
 
   manifestoNote: "Each project gets its own workflow, built around the story and the team. The quality bar stays the same.",
