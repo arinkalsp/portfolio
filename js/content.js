@@ -191,11 +191,16 @@ window.SITE = {
       { group: "Edit and post", items: ["Adobe Premiere Pro", "DaVinci Resolve", "Frame.io"] },
       { group: "Production and design", items: ["Cerebro", "Figma", "Miro", "Airtable", "Jira"] },
     ],
-    // Свои генерации. Для видео — video + poster, для картинки — только image.
-    // Первая в списке показывается крупно.
+    // Свои работы. image — обложка, youtube — ссылка на ролик (если пусто, обложка не кликается).
+    // vertical: true — для вертикальных роликов 9:16, они откроются в вертикальном плеере.
+    // Первые пять встают в сетку: 1 — крупный вертикальный флагман слева, 2 — широкий сверху,
+    // 3 — горизонтальный снизу, 4 и 5 — вертикальные снизу.
     generations: [
-      { video: "media/generations/seedance-scene.mp4", poster: "media/generations/seedance-scene.jpg", caption: "Seedance 2.0. Multi-shot drama scene with a famous actor" },
-      // { image: "media/generations/my-frame.jpg", caption: "Nano Banana. Character sheet" },
+      { image: "media/generations/ruslo.jpg",         youtube: "",                                     vertical: true, caption: "RUSLŌ campaign" },
+      { image: "media/generations/interrogation.jpg", youtube: "https://youtu.be/K2foWtWRFjY",                         caption: "Multi-shot scene with a famous actor" },
+      { image: "media/generations/hopper.jpg",        youtube: "https://youtu.be/bsFUSHR1Yy0",                         caption: "Painting brought to life: Edward Hopper’s <i>Nighthawks</i>" },
+      { image: "media/generations/ashley.jpg",        youtube: "https://youtube.com/shorts/N66fV7wi0PE", vertical: true, caption: "3D animation test" },
+      { image: "media/generations/freeze.jpg",        youtube: "https://youtube.com/shorts/I4S83y_Yhm8", vertical: true, caption: "Viral motion freeze test" },
     ],
   },
 

@@ -114,14 +114,25 @@
   }).join(""));
   var gens = K.generations || [];
   var genGrid = $("generations");
+  function stripTags(t) { return String(t || "").replace(/<[^>]+>/g, ""); }
+  // The first five works form a fixed layout: a tall flagship on the left,
+  // a wide shot on top, then one horizontal and two vertical works below.
+  function genItem(g, i) {
+    var cap = g.caption ? '<span class="gen-cap">' + g.caption + "</span>" : "";
+    var media = g.video ? loop(g.video, g.poster, stripTags(g.caption) || "Generation") :
+      '<img src="' + esc(g.image) + '" alt="" loading="lazy">';
+    var cls = "gen gen-" + (i + 1) + (g.vertical ? " is-vertical" : "");
+    if (g.youtube) {
+      return '<button type="button" class="' + cls + ' poster" data-youtube="' + esc(g.youtube) + '"' +
+        (g.vertical ? ' data-vertical="1"' : "") + ' aria-label="Play ' + esc(stripTags(g.caption)) + '">' +
+        media + '<span class="play">' + PLAY + "</span>" + cap + "</button>";
+    }
+    return '<figure class="' + cls + '">' + media + cap + "</figure>";
+  }
   if (genGrid) {
+    genGrid.classList.toggle("gen-feature", gens.length >= 5);
     genGrid.classList.toggle("is-single", gens.length === 1);
-    genGrid.innerHTML = gens.map(function (g, i) {
-      var media = g.video ? loop(g.video, g.poster, g.caption || "Generation") :
-        '<img src="' + esc(g.image) + '" alt="' + esc(g.caption || "") + '" loading="lazy">';
-      return '<figure class="gen' + (i === 0 ? " gen-lead" : "") + '">' + media +
-        (g.caption ? "<figcaption>" + g.caption + "</figcaption>" : "") + "</figure>";
-    }).join("");
+    genGrid.innerHTML = gens.map(genItem).join("");
     if (!gens.length) genGrid.closest(".generations").hidden = true;
   }
 
@@ -204,9 +215,10 @@
     box.innerHTML = reason + ' <a href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener">Watch on YouTube</a>';
     box.hidden = false;
   }
-  function openPlayer(url) {
+  function openPlayer(url, vertical) {
     var id = youtubeId(url);
     if (!id) { window.open(url, "_blank", "noopener"); return; }
+    dlg.classList.toggle("is-vertical", !!vertical);
     frame.innerHTML = '<div class="player-screen"><div id="yt-player"></div><p class="player-fallback" hidden></p></div>' +
       '<a class="player-yt" href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener">Open on YouTube</a>';
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
@@ -240,7 +252,7 @@
   }
   document.addEventListener("click", function (e) {
     var b = e.target.closest("[data-youtube]");
-    if (b) { e.preventDefault(); openPlayer(b.getAttribute("data-youtube")); }
+    if (b) { e.preventDefault(); openPlayer(b.getAttribute("data-youtube"), b.hasAttribute("data-vertical")); }
   });
   dlg.querySelector(".player-close").addEventListener("click", closePlayer);
   dlg.addEventListener("click", function (e) { if (e.target === dlg) closePlayer(); });

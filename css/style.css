@@ -268,11 +268,25 @@ section + section, .work { margin-top: var(--gap-section); }
 .generations { display: flex; flex-direction: column; gap: 14px; }
 .gen-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .gen { position: relative; background: var(--tile); overflow: hidden; aspect-ratio: 16 / 9; }
-.gen-lead { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; min-height: 100%; }
-.gen video, .gen img { width: 100%; height: 100%; object-fit: cover; }
-.gen figcaption { position: absolute; left: 12px; bottom: 12px; right: 12px; width: fit-content; padding: 5px 10px; background: var(--paper); font-size: 12px; }
 .gen-grid.is-single { grid-template-columns: 1fr; max-width: 900px; }
-.gen-grid.is-single .gen-lead { grid-column: auto; grid-row: auto; aspect-ratio: 16 / 9; }
+.gen-grid.is-single .gen-1 { aspect-ratio: 16 / 9; }
+.gen.poster, .gen { width: 100%; padding: 0; border: 0; }
+.gen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.gen-cap {
+  position: absolute; left: 12px; bottom: 12px; right: 12px; width: fit-content; max-width: calc(100% - 24px);
+  padding: 5px 10px; background: var(--paper); color: var(--ink); font-size: 12px; line-height: 1.35; text-align: left;
+}
+/* Five-work layout: flagship (1) on the left, wide (2) on top, horizontal (3) and two verticals (4, 5) below. */
+.gen-grid.gen-feature { grid-template-columns: minmax(0, 420fr) minmax(0, 500fr) minmax(0, 192fr) minmax(0, 192fr); }
+.gen-feature > .gen { aspect-ratio: auto; min-height: 0; }
+.gen-feature > .gen-1 { grid-column: 1; grid-row: 1 / span 2; }
+.gen-feature > .gen-2 { grid-column: 2 / span 3; grid-row: 1; aspect-ratio: 2.35 / 1; }
+.gen-feature > .gen-3 { grid-column: 2; grid-row: 2; aspect-ratio: 500 / 341; }
+.gen-feature > .gen-4 { grid-column: 3; grid-row: 2; aspect-ratio: 9 / 16; }
+.gen-feature > .gen-5 { grid-column: 4; grid-row: 2; aspect-ratio: 9 / 16; }
+.gen-feature > .gen:nth-child(n+6) { grid-column: span 2; aspect-ratio: 16 / 9; }
+.gen-feature .gen-1 .play { width: 84px; height: 84px; }
+.gen-feature .gen-1 .play svg { width: 24px; height: 28px; margin-left: 4px; }
 
 /* ─── About ─── */
 .about { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; }
@@ -312,6 +326,8 @@ section + section, .work { margin-top: var(--gap-section); }
 .player-fallback[hidden] { display: none; }
 .player-fallback a, .player-yt { color: var(--paper); text-underline-offset: 3px; }
 .player-yt { position: absolute; left: 0; bottom: -36px; font-size: 14px; }
+.player.is-vertical { width: min(94vw, calc(84vh * 9 / 16)); }
+.player.is-vertical .player-screen { aspect-ratio: 9 / 16; }
 .player-close {
   position: absolute; right: 0; top: -52px; width: 44px; height: 44px; border-radius: 50%;
   border: 1px solid var(--paper); background: transparent; color: var(--paper); cursor: pointer;
@@ -373,6 +389,12 @@ section + section, .work { margin-top: var(--gap-section); }
   .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .skills-intro { grid-column: 1 / -1; max-width: 560px; }
   .about { grid-template-columns: 1fr; gap: 48px; }
+  .gen-grid.gen-feature { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gen-feature > .gen-1 { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 9 / 16; width: min(100%, 520px); justify-self: center; }
+  .gen-feature > .gen-2 { grid-column: 1 / -1; grid-row: auto; }
+  .gen-feature > .gen-3 { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16 / 9; }
+  .gen-feature > .gen-4, .gen-feature > .gen-5 { grid-column: auto; grid-row: auto; }
+  .gen-feature > .gen:nth-child(n+6) { grid-column: 1 / -1; }
 }
 
 /* ─── Phone ─── */
@@ -410,4 +432,6 @@ section + section, .work { margin-top: var(--gap-section); }
   .about-two { grid-template-columns: 1fr; }
   .footer-links { font-size: 18px; flex-direction: column; }
   .row-pair, .facts div { grid-template-columns: 96px 1fr; }
+  .gen-feature > .gen-2 { aspect-ratio: 16 / 9; }
+  .gen-cap { left: 8px; bottom: 8px; max-width: calc(100% - 16px); font-size: 11px; }
 }
