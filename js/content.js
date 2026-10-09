@@ -196,7 +196,7 @@ window.SITE = {
     // Первые пять встают в сетку: 1 — крупный вертикальный флагман слева, 2 — широкий сверху,
     // 3 — горизонтальный снизу, 4 и 5 — вертикальные снизу.
     generations: [
-      { image: "media/generations/ruslo.jpg",         youtube: "",                                     vertical: true, caption: "RUSLŌ campaign" },
+      { image: "media/generations/ruslo.jpg",         youtube: "https://youtube.com/shorts/8UiUqPgYtxU", vertical: true, caption: "RUSLŌ campaign" },
       { image: "media/generations/interrogation.jpg", youtube: "https://youtu.be/K2foWtWRFjY",                         caption: "Multi-shot scene with a famous actor" },
       { image: "media/generations/hopper.jpg",        youtube: "https://youtu.be/bsFUSHR1Yy0",                         caption: "Painting brought to life: Edward Hopper’s <i>Nighthawks</i>" },
       { image: "media/generations/ashley.jpg",        youtube: "https://youtube.com/shorts/N66fV7wi0PE", vertical: true, caption: "3D animation test" },
