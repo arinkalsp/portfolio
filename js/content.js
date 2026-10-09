@@ -213,7 +213,7 @@ window.SITE = {
       { group: "Creative",    items: ["Creative supervision across every stage", "Art direction for concept art and look development"] },
     ],
     experience: [
-      ["2025–now",  "Creative Production Head, Neurowood"],
+      ["2025–2026", "Creative Production Head, Neurowood"],
       ["2024–2025", "Post-Production Producer, Clandestino Studio"],
       ["2022–2023", "Senior Creative Copywriter, ICE Communication Agency"],
       ["2021–2022", "Creative Producer, TNT TV Channel"],
