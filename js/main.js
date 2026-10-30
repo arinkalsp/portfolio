@@ -42,24 +42,22 @@
   var P = S.person || {};
   var photo = $("hero-photo");
   if (photo && P.photo) photo.src = P.photo;
-  set("hero-intro", (P.intro || "") + (P.mission ? '<br><span class="muted">' + P.mission + "</span>" : ""));
-  set("manifesto-note", S.manifestoNote || "");
+  set("hero-hello", P.hello || "");
+  set("hero-more", P.more || "");
 
-  // ─── Flagship ───
-  var F = S.flagship || {};
-  set("flagship-title", F.title || "");
-  set("flagship-text", F.text || "");
-  set("flagship-facts", (F.facts || []).map(function (f) {
-    return "<div><dt>" + f[0] + "</dt><dd>" + f[1] + "</dd></div>";
-  }).join(""));
-  set("flagship-media", F.image ? playButton(F.youtube, F.image, (F.caption || F.title), "poster-flagship") +
-    (F.caption ? '<span class="chip chip-corner">' + F.caption + "</span>" : "") : "");
-
-  // ─── Projects ───
-  set("projects-track", (S.projects || []).map(function (p) {
-    return '<article class="project">' + playButton(p.youtube, p.image, p.title) +
-      "<h4>" + p.title + "</h4><p>" + (p.text || "") + "</p></article>";
-  }).join(""));
+  // ─── Featured and more projects ───
+  function facts(list) {
+    return list && list.length ? '<dl class="facts">' + list.map(function (f) {
+      return "<div><dt>" + f[0] + "</dt><dd>" + f[1] + "</dd></div>";
+    }).join("") + "</dl>" : "";
+  }
+  function projectCard(p, cls) {
+    return '<article class="' + cls + '">' + playButton(p.youtube, p.image, p.title) +
+      '<div class="card-info"><div class="card-head">' + (p.tags ? '<span class="card-tags">' + p.tags + "</span>" : "") +
+      "<h3>" + p.title + "</h3></div><p>" + (p.text || "") + "</p>" + facts(p.facts) + "</div></article>";
+  }
+  set("featured", (S.featured || []).map(function (p, i) { return projectCard(p, "feat feat-" + (i + 1)); }).join(""));
+  set("projects-grid", (S.projects || []).map(function (p) { return projectCard(p, "card"); }).join(""));
 
   // ─── Hybrid ───
   var H = S.hybrid || {};
@@ -294,18 +292,16 @@
     });
   }
   // Single elements that slide up as they enter the screen.
-  [".meta-row", ".flagship-title", ".flagship-info", "#flagship-media", ".section-head",
+  [".meta-row", ".section-head",
    ".factories-head > *", ".channels-bar", ".skills-intro", ".about-statement",
    ".about-right .list-block", ".earlier > *", ".footer-title", ".footer-bar"].forEach(function (sel) {
     mark(sel, "reveal");
   });
   // Lines that follow each other.
-  mark(".manifesto-title > span", "reveal", 110);
-  mark(".manifesto-note", "reveal");
   mark(".skills-title > span", "reveal", 110);
   mark(".tool-groups > .list-block", "reveal", 90);
   // Groups whose children appear one after another.
-  document.querySelectorAll(".track, .hybrid-grid, .stats, .gen-grid").forEach(function (g) {
+  document.querySelectorAll(".track, .featured, .projects-grid, .hybrid-grid, .stats, .gen-grid").forEach(function (g) {
     g.classList.add("stagger");
     Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--i", Math.min(i, 6)); });
   });
@@ -336,7 +332,7 @@
       seen.unobserve(el);
     });
   }, { rootMargin: "0px 0px -5% 0px", threshold: 0.08 });
-  var watched = document.querySelectorAll(".reveal, .stagger, #ecom-number, .manifesto-title > span");
+  var watched = document.querySelectorAll(".reveal, .stagger, #ecom-number");
   watched.forEach(function (el) { seen.observe(el); });
   // At the very bottom of the page nothing can scroll further into view, so show what is left.
   window.addEventListener("scroll", function () {

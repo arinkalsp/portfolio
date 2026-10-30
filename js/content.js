@@ -21,86 +21,100 @@ window.SITE = {
   // ─── ШАПКА И ПЕРВЫЙ ЭКРАН ──────────────────────────────────────────
   person: {
     photo: "media/portrait.jpg",
-    intro: "AI-first creative developer and production executive with extensive experience in audiovisual production, from social media and branded campaigns to film and animation.",
-    mission: "My mission is to prototype workflows, lead and supervise teams, and push the creative boundaries of AI tools.",
+    // Крупный текст на первом экране. Ссылка: <a href='#раздел'>текст</a> (кавычки у ссылки одинарные).
+    // Разделы: #work (проекты), #hybrid, #factories, #ecom, #skills, #about, #contact.
+    hello: "Hi, my name is Arina Aksenova. I’m a creative developer and production executive working with AI in audiovisual production. My experience spans <a href='#factories'>social content</a>, <a href='#ecom'>branded campaigns</a>, <a href='#work'>film and animation</a>.",
+    // Текст поменьше под ним.
+    more: "I <a href='#hybrid'>prototype workflows</a> and lead teams through production. Each project needs its own approach, shaped by the story and the people making it. I explore <a href='#skills'>what AI tools can do creatively</a>, then work out how to use them in the production process.",
     imdb: "https://www.imdb.com/name/nm18338650/", // ссылка показывается в самом низу сайта
     // Резюме: положите PDF в папку files и впишите путь, например "files/Arina_Aksenova_CV.pdf".
     // Пока здесь пусто, кнопки Download CV на сайте не показываются.
     cv: "files/Arina_Aksenova_CV.pdf",
   },
 
-  manifestoNote: "Each project gets its own workflow, built around the story and the team. The quality bar stays the same.",
+  // ─── FEATURED PROJECTS: три крупных проекта ─────────────────────────
+  // Первый показывается на всю ширину, второй и третий — рядом под ним.
+  // tags — короткая подпись над названием. facts — строки «название — значение» (можно не указывать).
+  featured: [
+    {
+      title: "KAYFSK",
+      tags: "Hybrid series, live action + generative AI",
+      text: "A hybrid series that blends live-action filmmaking with generative AI. I built a production pipeline that didn’t exist before: workflows for hybrid shots, the role of AI supervisor on set, and one visual language across unstable tools.",
+      facts: [
+        ["Stage", "Pre-production"],
+        ["Assets", "40+ characters, 15 locations"],
+        ["Year", "2025"],
+      ],
+      youtube: "https://www.youtube.com/watch?v=M2X9yBqv-ko",
+      image: "media/projects/kayfsk.jpg",
+    },
+    {
+      title: "The Night Land",
+      tags: "Series pilot, world building",
+      text: "An in-house project to bring William Hope Hodgson’s novel <i>The Night Land</i> to the screen. Built an extensive library of characters, locations and props for its dystopian world, and worked on a 20-minute pilot episode.",
+      youtube: "https://youtu.be/RWZpxTlm3FE",
+      image: "media/projects/night-land.jpg",
+    },
+    {
+      title: "Wild Wild East",
+      tags: "Pitch teaser, original IP",
+      text: "A pitch teaser for an original IP: from script breakdown and early concept art to defining the visual style and its technical execution, plus storyboarding with the director.",
+      youtube: "https://youtu.be/QKXymWYG3A0",
+      image: "media/projects/wild-wild-east.jpg",
+    },
+  ],
 
-  // ─── ФЛАГМАНСКИЙ ПРОЕКТ ────────────────────────────────────────────
-  flagship: {
-    title: "KAYFSK",
-    text: "A hybrid series that blends live-action filmmaking with generative AI. I built a production pipeline that didn’t exist before: workflows for hybrid shots, the role of AI supervisor on set, and one visual language across unstable tools.",
-    facts: [
-      ["Stage", "Pre-production"],
-      ["Assets", "40+ characters, 15 locations"],
-      ["Year", "2025"],
-    ],
-    youtube: "https://www.youtube.com/watch?v=M2X9yBqv-ko",
-    image: "media/projects/kayfsk.jpg",
-    caption: "KAYFSK teaser",
-  },
-
-  // ─── КАРУСЕЛЬ ПРОЕКТОВ ─────────────────────────────────────────────
+  // ─── MORE PROJECTS: сетка поменьше ─────────────────────────────────
   // image — обложка 16:9 (лучше 960×540 или больше), youtube — ссылка на ролик.
   projects: [
     {
       title: "EDENtity",
+      tags: "Original series",
       text: "A Neurowood in-house series based on biblical stories and inspired by <i>Love, Death &amp; Robots</i>. Developed a distinctive visual style, the script and the world.",
       youtube: "https://youtu.be/5BlK0KJd4PQ",
       image: "media/projects/edentity.jpg",
     },
     {
-      title: "The Night Land",
-      text: "Another in-house project to bring William Hope Hodgson’s novel <i>The Night Land</i> to the screen. Built an extensive library of characters, locations and props for its dystopian world, and worked on a 20-minute pilot episode.",
-      youtube: "https://youtu.be/RWZpxTlm3FE",
-      image: "media/projects/night-land.jpg",
-    },
-    {
       title: "The Road to Revenge",
+      tags: "Test teaser",
       text: "A test teaser made in collaboration with Decon Studio, based on their IP. Full development of characters and locations, plus work on the actors’ performances.",
       youtube: "https://youtu.be/j2WyN_R5lSA",
       image: "media/projects/road-to-revenge.jpg",
     },
     {
       title: "ALASKA",
+      tags: "Historical fiction",
       text: "A complex historical fiction project, thoroughly fact-checked for accuracy and built for a high degree of cinematic realism.",
       youtube: "https://youtu.be/86ohqDddh-0",
       image: "media/projects/alaska.jpg",
     },
     {
-      title: "Wild Wild East",
-      text: "A pitch teaser for an original IP: from script breakdown and early concept art to defining the visual style and its technical execution, plus storyboarding with the director.",
-      youtube: "https://youtu.be/QKXymWYG3A0",
-      image: "media/projects/wild-wild-east.jpg",
+      title: "HealthIs TV spot",
+      tags: "Broadcast commercial",
+      text: "Fully AI-generated commercial, aired nationwide. End-to-end production to broadcast standard. Realism at the highest level possible with 2025 technology.",
+      youtube: "https://youtu.be/upB7dHABJOE",
+      image: "media/projects/healthis-tv.jpg",
     },
     {
       title: "Adrenaline Rush",
+      tags: "Brand campaign",
       text: "A brand campaign in the run-up to the World Cup, a huge moment for Uzbekistan. The story: victory is built on the mistakes you make along the way.",
       youtube: "https://youtu.be/wTrHgvH7-yE",
       image: "media/projects/adrenaline-rush.jpg",
     },
     {
-      title: "Product Placement Studio Showreel",
-      text: "A large volume of client brand-integration projects, delivered through a dedicated pipeline that combines AI, compositing, editing and color grading.",
-      youtube: "https://youtu.be/J9mEtPfkF9M",
-      image: "media/projects/pp-showreel.jpg",
-    },
-    {
       title: "F1 x RUDI",
+      tags: "Experimental film",
       text: "An experimental film testing the limits of AI-generated motion and edit rhythm. Unprecedented for AI video as of fall 2025.",
       youtube: "https://youtu.be/F7tQGuZp8HM",
       image: "media/projects/f1-rudi.jpg",
     },
     {
-      title: "HealthIs TV spot",
-      text: "Fully AI-generated commercial, aired nationwide. End-to-end production to broadcast standard. Realism at the highest level possible with 2025 technology.",
-      youtube: "https://youtu.be/upB7dHABJOE",
-      image: "media/projects/healthis-tv.jpg",
+      title: "Product Placement Studio Showreel",
+      tags: "Brand integration",
+      text: "A large volume of client brand-integration projects, delivered through a dedicated pipeline that combines AI, compositing, editing and color grading.",
+      youtube: "https://youtu.be/J9mEtPfkF9M",
+      image: "media/projects/pp-showreel.jpg",
     },
   ],
 
@@ -206,7 +220,7 @@ window.SITE = {
 
   // ─── ОБО МНЕ ───────────────────────────────────────────────────────
   about: {
-    statement: "To me, a good producer is a Swiss Army knife: the right tool for every stage, from prep to post. I dive into every process, keep learning, and see each project through from concept to screen.",
+    statement: "My work as a producer runs from prep through post. I get into the details of each stage and stay involved as the project moves from an initial concept to the screen.",
     own: [
       { group: "Development", items: ["Scripts and treatments", "Pitch decks for investors and clients"] },
       { group: "Production",  items: ["Pipeline design, from preproduction to final edit", "Budgets over $600k, schedules and production reporting", "Teams of AI artists, directors, editors and post", "Client, vendor and stakeholder relationships"] },

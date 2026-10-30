@@ -45,48 +45,28 @@
 
 <main>
   <section class="hero wrap" id="top">
-    <h1 class="hero-title">
-      <span class="hero-l1">ARINA AKSENOVA</span>
-      <span class="hero-l2"><span class="accent"><svg class="spin-star" viewBox="0 0 372 356" aria-hidden="true"><path d="M116 356 51 313 115 216 0 217V139H115L51 43L116 0L186 107L255 0L321 41L257 139H372V217L257 216L320 313L255 356L186 248Z"/></svg>(</span>CREATIVE PRODUCER<span class="accent">)</span></span>
-      <span class="hero-l3 serif">for AI and hybrid projects</span>
-    </h1>
     <div class="hero-photo"><img id="hero-photo" alt="Arina Aksenova" width="900" height="1200"></div>
     <div class="hero-text">
-      <p id="hero-intro"></p>
+      <h1 class="hero-hello"><span class="hero-star accent"><svg class="spin-star" viewBox="0 0 372 356" aria-hidden="true"><path d="M116 356 51 313 115 216 0 217V139H115L51 43L116 0L186 107L255 0L321 41L257 139H372V217L257 216L320 313L255 356L186 248Z"/></svg></span><span id="hero-hello"></span></h1>
+      <p class="hero-more" id="hero-more"></p>
     </div>
-    <a class="scroll-cue" href="#manifesto" aria-label="Scroll down">
+    <a class="scroll-cue" href="#work" aria-label="Scroll down">
       <svg viewBox="0 0 24 26" aria-hidden="true"><path d="M5 4l7 7 7-7M5 13l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </section>
 
-  <section class="manifesto wrap" id="manifesto" aria-label="Approach">
-    <p class="manifesto-title" aria-hidden="false">
-      <span class="m-l1">NEW STORY,</span>
-      <span class="m-l2"><span class="rule"></span><span class="serif">new pipeline,</span></span>
-      <span class="m-l3">SAME BAR<span class="rule grow"></span></span>
-    </p>
-    <p class="manifesto-note" id="manifesto-note"></p>
-  </section>
-
   <section class="work wrap" id="work">
-    <div class="meta-row"><span>Selected work</span><span>Flagship project</span></div>
-    <h2 class="flagship-title" id="flagship-title"></h2>
-    <div class="flagship">
-      <div class="flagship-info">
-        <p id="flagship-text"></p>
-        <dl class="facts" id="flagship-facts"></dl>
-      </div>
-      <div id="flagship-media"></div>
-    </div>
-
     <div class="section-head">
-      <h3 class="more-title">MORE <span class="serif">projects</span></h3>
-      <div class="section-head-side">
-        <span class="muted-small">Trailers, commercials, experiments</span>
-        <div class="carousel-controls" data-for="projects-track"></div>
-      </div>
+      <h2 class="h-mid">FEATURED <span class="serif">projects</span></h2>
+      <span class="muted-small">Series, pilots and pitch teasers</span>
     </div>
-    <div class="track projects-track" id="projects-track"></div>
+    <div class="featured" id="featured"></div>
+
+    <div class="section-head more-head">
+      <h3 class="more-title">MORE <span class="serif">projects</span></h3>
+      <span class="muted-small">Trailers, commercials, experiments</span>
+    </div>
+    <div class="projects-grid" id="projects-grid"></div>
   </section>
 
   <section class="hybrid wrap" id="hybrid">
