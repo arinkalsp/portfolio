@@ -23,9 +23,9 @@ window.SITE = {
     photo: "media/portrait.jpg",
     // Крупный текст на первом экране. Ссылка: <a href='#раздел'>текст</a> (кавычки у ссылки одинарные).
     // Разделы: #work (проекты), #hybrid, #factories, #ecom, #skills, #about, #contact.
-    hello: "Hi, my name is Arina Aksenova. I’m a creative developer and production executive working with AI in audiovisual production. My experience spans <a href='#factories'>social content</a>, <a href='#ecom'>branded campaigns</a>, <a href='#work'>film and animation</a>.",
+    hello: "Hi, my name is Arina Aksenova. I’m a creative producer working with AI in audiovisual production. I’ve led projects across <a href='#factories'>social content</a>, <a href='#ecom'>branded campaigns</a>, <a href='#work'>film and animation</a>.",
     // Текст поменьше под ним.
-    more: "I <a href='#hybrid'>prototype workflows</a> and lead teams through production. Each project needs its own approach, shaped by the story and the people making it. I explore <a href='#skills'>what AI tools can do creatively</a>, then work out how to use them in the production process.",
+    more: "I <a href='#about'>lead and supervise teams</a> of directors, AI artists and editors from prep to post. Each project gets its own approach, shaped by the story and the people making it. I explore <a href='#skills'>what AI tools can do creatively</a> and turn it into a production process my team can rely on.",
     imdb: "https://www.imdb.com/name/nm18338650/", // ссылка показывается в самом низу сайта
     // Резюме: положите PDF в папку files и впишите путь, например "files/Arina_Aksenova_CV.pdf".
     // Пока здесь пусто, кнопки Download CV на сайте не показываются.
